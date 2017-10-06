@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        var four=0;
+        var three=0;
+        var two=0;
+        var one=0;
+        $(function(){
+            // $("#count").html('');
+            
+            $("#count-up-button").on('touchend',function(){
+                if(one<9){
+                    one++;  
+                    img_update();
+                }else if(two<9){
+                    one=0;
+                    two++;
+                    img_update();
+                }else if(three<9){
+                    two=0;
+                    one=0;
+                    three++;    
+                    img_update();
+                }else if(four<9){
+                    three=0;
+                    two=0;
+                    one=0;
+                    four++;    
+                    img_update();
+                }else if(four>9){
+                    alert("これ以上増えません。リセットボタンを押してください");
+                }
+                console.log("1桁目は"+one);
+                console.log("2桁目は"+two);
+                console.log("3桁目は"+three);
+                console.log("4桁目は"+four);
+            })  
+            $("#count-down-button").on('touchend',function(){
+                if(one>0){
+                    one--;
+                    img_update();   
+                }else if(two>0){
+                    one=0;
+                    two--;
+                    img_update();    
+                }else if(three>0){
+                    two=0;
+                    one=0;
+                    three--;
+                     img_update();   
+                }else if(four>0){
+                    three=0;
+                    two=0;
+                    one=0;
+                    four--;
+                    img_update();
+                }else if(one<0){
+                    alert("これ以上減らすことはできません。リセットボタンを押してください");
+                }
+            })
+            $("#reset").on('touchend',function(){
+                // alert("OK");
+                if(confirm("リセットしますか？")){
+                    one=0;
+                    two=0;
+                    three=0;
+                    four=0;
+                    img_update();    
+                }
+                
+            })
+            //画像の変更
+            function img_update(){
+                $("#count").html('<img src="img/no_0'+four+'.png" width="55"><img src="img/no_0'+three+'.png" width="55"><img src="img/no_0'+two+'.png" width="55"><img src="img/no_0'+one+'.png" width="55">' );
+            }
+        })
+
+    </script>
+</head>
+
+<body>
+    <div id="count">
+        <img src="img/no_00.png" width="55" />
+        <img src="img/no_00.png" width="55" />
+        <img src="img/no_00.png" width="55" />
+        <img src="img/no_00.png" width="55" />
+    </div>
+    <div >
+        <button id="reset"><img src="img/btn_reset_normal.png" width="64"/></button>
+    </div>
+    <button id="count-up-button"><img src="img/btn_count_up.gif" width="127"/></button>
+    <button id="count-down-button"><img src="img/btn_count_down.gif" width="127" /></button> 
+        
+</body>
+
+</html>
